@@ -648,6 +648,20 @@ bool luaval_to_ccluavaluevector(lua_State* L, int lo, LuaValueArray* ret, const 
 }
 
 #if COCOS2D_VERSION <= 0x00030600
+void std_map_string_string_to_luaval(lua_State* L, const std::map<std::string, std::string>& inValue) {
+    if (nullptr == L) {
+        return;
+    }
+
+    lua_newtable(L);
+
+    for (std::map<std::string, std::string>::const_iterator iter = inValue.begin(); iter != inValue.end(); ++iter) {
+        lua_pushstring(L, iter->first.c_str());
+        lua_pushstring(L, iter->second.c_str());
+        lua_rawset(L, -3);
+    }
+}
+
 bool luaval_to_std_map_string_string(lua_State* L, int lo, std::map<std::string, std::string>* ret, const char* funcName) {
     if (nullptr == L || nullptr == ret || lua_gettop(L) < lo)
         return false;
@@ -686,14 +700,14 @@ bool luatable_to_map_string_string(lua_State* L, int lo, std::map<std::string,st
 {
     if ( nullptr == L || nullptr == ret)
         return false;
-    
+
     tolua_Error tolua_err;
     bool ok = true;
     if (!tolua_istable(L, lo, 0, &tolua_err))
     {
         ok = false;
     }
-    
+
     if (ok)
     {
         std::string stringKey = "";
@@ -708,10 +722,10 @@ bool luatable_to_map_string_string(lua_State* L, int lo, std::map<std::string,st
                 lua_pop(L, 1);                                      /* removes 'value'; keep 'key' for next iteration*/
                 continue;
             }
-            
+
             if(luaval_to_std_string(L, -2, &stringKey))
             {
-                
+
                 if(lua_istable(L, -1))
                 {
                     // skip nested objects
@@ -737,11 +751,11 @@ bool luatable_to_map_string_string(lua_State* L, int lo, std::map<std::string,st
                     dict[stringKey] = std::string(c) ;
                 }
             }
-            
+
             lua_pop(L, 1);                                          /* L: lotable ..... key */
         }
     }
-    
+
     return ok;
 }
 

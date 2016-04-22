@@ -45,14 +45,30 @@ namespace sdkbox
         return JS_SetElement(cx, array, index, &pr);
     }
     
-    JSOBJECT* JS_NEW_OBJECT( JSContext* cs ) {
+    JSOBJECT* JS_NEW_OBJECT( JSContext* cx ) {
         return JS_NewObject(cx, NULL, NULL, NULL);
     }
     
 #endif
     
+    
+    JSObject* make_array( JSContext* ctx, int size ) {
+        #if defined(JS_VERSION)
+                return JS_NewArrayObject(ctx, size, NULL);
+        #else
+                return JS_NewArrayObject(ctx, size);
+        #endif
+    }
+
+#if defined(JS_VERSION)
+#define make_property(pr,CTX) JSPROPERTY_VALUE pr = jsval()
+#else
+#define make_property(pr,ctx)  JSPROPERTY_VALUE pr(ctx)
+#endif
+    
+    
     JSOBJECT* JS_NEW_ARRAY( JSContext* cx, uint32_t size ) {
-        return JS_NewArrayObject(cx, size);
+        return make_array(cx, size);
     }
     
     JSOBJECT* JS_NEW_ARRAY( JSContext* cx ) {
@@ -60,27 +76,27 @@ namespace sdkbox
     }
     
     void addProperty( JSContext* cx, JSOBJECT* jsobj, const char* prop, const std::string& value ) {
-        JSPROPERTY_VALUE pr(cx);
+        make_property(pr,cx);
         pr = std_string_to_jsval(cx, value.c_str());
         JS_SET_PROPERTY(cx, jsobj, prop, pr);
     }
     void addProperty( JSContext* cx, JSOBJECT* jsobj, const char* prop, const char* value ) {
-        JSPROPERTY_VALUE pr(cx);
+        make_property(pr,cx);
         pr = std_string_to_jsval(cx, value);
         JS_SET_PROPERTY(cx, jsobj, prop, pr);
     }
     void addProperty( JSContext* cx, JSOBJECT* jsobj, const char* prop, bool value ) {
-        JSPROPERTY_VALUE pr(cx);
+        make_property(pr,cx);
         pr = BOOLEAN_TO_JSVAL(value);
         JS_SET_PROPERTY(cx, jsobj, prop, pr);
     }
     void addProperty( JSContext* cx, JSOBJECT* jsobj, const char* prop, int value ) {
-        JSPROPERTY_VALUE pr(cx);
+        make_property(pr,cx);
         pr = INT_TO_JSVAL(value);
         JS_SET_PROPERTY(cx, jsobj, prop, pr);
     }
     void addProperty( JSContext* cx, JSOBJECT* jsobj, const char* prop, JSOBJECT* value ) {
-        JSPROPERTY_VALUE pr(cx);
+        make_property(pr,cx);
         pr = OBJECT_TO_JSVAL(value);
         JS_SET_PROPERTY(cx, jsobj, prop, pr );
     }

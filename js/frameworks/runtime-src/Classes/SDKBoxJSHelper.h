@@ -68,10 +68,10 @@ namespace sdkbox
 
     #elif defined(JS_VERSION)
         typedef JSObject            JSOBJECT;
-
+    
         typedef jsval               JSPROPERTY_VALUE;
         typedef jsval               JSPROPERTY_STRING;
-        typedef javal               JSPROPERTY_OBJECT;
+        typedef jsval               JSPROPERTY_OBJECT;
 
         typedef JSBool              JS_BOOL;
 
@@ -102,6 +102,9 @@ namespace sdkbox
         JSOBJECT* JS_NEW_OBJECT( JSContext* cs );
 
     #endif
+    
+    JSObject* make_array( JSContext* ctx, int size );
+    jsval make_property( JSContext*ctx );
 
     JSOBJECT* JS_NEW_ARRAY( JSContext* cx, uint32_t size );
     JSOBJECT* JS_NEW_ARRAY( JSContext* cx );

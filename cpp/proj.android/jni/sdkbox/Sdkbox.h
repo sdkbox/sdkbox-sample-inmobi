@@ -7,7 +7,7 @@
 #ifndef _CC_SDKBOX_H_
 #define _CC_SDKBOX_H_
 
-#define SDKBOX_VERSION_STR  "sdkbox V2.0.3.4"
+#define SDKBOX_VERSION_STR  "sdkbox V2.1.3.3"
 
 /**
  * Only certain compilers support __attribute__((deprecated)).
@@ -71,6 +71,41 @@ namespace sdkbox {
     std::string AdTypeToString( AdType t );
     int         AdTypeToInt( AdType t );
     AdType      intToAdType( int t );
+
+
+    enum SocialPlatform {
+        Platform_Unknow = 0,
+        Platform_Twitter = 1,
+        Platform_Facebook = 2,
+        Platform_Select = 3,
+        Platform_All = 4
+    };
+
+    enum SocialShareState {
+        SocialShareStateNone,
+        SocialShareStateUnkonw,
+        SocialShareStateBegin,
+        SocialShareStateSuccess,
+        SocialShareStateFail,
+        SocialShareStateCancelled,
+        SocialShareStateSelectShow,
+        SocialShareStateSelected,
+        SocialShareStateSelectCancelled
+    };
+
+    struct SocialShareResponse {
+        SocialShareState state;
+        std::string error;
+        SocialPlatform platform;
+    };
+
+    struct SocialShareInfo {
+        std::string text;
+        std::string title;
+        std::string image;
+        std::string link;
+        SocialPlatform platform;
+    };
 }
 
 #endif//_CC_SDKBOX_H_

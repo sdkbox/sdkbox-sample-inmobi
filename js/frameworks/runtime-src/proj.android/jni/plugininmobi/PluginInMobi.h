@@ -245,6 +245,10 @@ namespace sdkbox {
          * Set comma delimited keywords for targeting purpose
          */
         static void setBannerKeywords(const std::string& keywords);
+        /**
+         * Hide Banner
+         */
+        static void hideBanner();
 
 
         /**

@@ -1,37 +1,39 @@
 #include "PluginInMobiJSHelper.h"
-#include "cocos2d_specifics.hpp"
 #include "PluginInMobi/PluginInMobi.h"
 #include "SDKBoxJSHelper.h"
-
-#include "js_manual_conversions.h"
 
 extern JSObject* jsb_sdkbox_PluginInMobi_prototype;
 static JSContext* s_cx = nullptr;
 
-class IMCallbackJS: public cocos2d::CCObject {
+#if (COCOS2D_VERSION < 0x00030000)
+#define Ref CCObject
+#define Director CCDirector
+#define getInstance sharedDirector
+#define schedule scheduleSelector
+#endif
+
+class IMCallbackJS: public cocos2d::Ref {
 public:
     IMCallbackJS();
     void schedule();
     void notityJs(float dt);
+    void transParams(JSContext* cx);
 
     std::string _name;
-    
+
     jsval _paramVal[2];
     int _paramLen;
+
+    sdkbox::PluginInMobi::SBIMStatusCode _code;
+    std::string _description;
+    std::map<std::string, std::string> _params;
 };
 
-class InMobiListenerJS : public sdkbox::InMobiListener {
-private:
-    JSObject* _JSDelegate;
+class InMobiListenerJS : public sdkbox::InMobiListener, public sdkbox::JSListenerBase
+{
 public:
-    void setJSDelegate(JSObject* delegate) {
-        _JSDelegate = delegate;
+    InMobiListenerJS():sdkbox::JSListenerBase() {
     }
-
-    JSObject* getJSDelegate() {
-        return _JSDelegate;
-    }
-
 
     void bannerDidFinishLoading() {
         IMCallbackJS* cb = new IMCallbackJS();
@@ -40,20 +42,18 @@ public:
     }
 
     void bannerDidFailToLoadWithError(sdkbox::PluginInMobi::SBIMStatusCode code, const std::string& description) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "bannerDidFailToLoadWithError";
-        cb->_paramVal[0] = INT_TO_JSVAL(code);
-        cb->_paramVal[1] = std_string_to_jsval(cx, description);
+        cb->_code = code;
+        cb->_description = description;
         cb->_paramLen = 2;
         cb->schedule();
     }
 
     void bannerDidInteractWithParams(const std::map<std::string, std::string>& params) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "bannerDidInteractWithParams";
-        cb->_paramVal[0] = sdkbox::std_map_string_string_to_jsval(cx, params);
+        cb->_params = params;
         cb->_paramLen = 1;
         cb->schedule();
     }
@@ -89,10 +89,9 @@ public:
     }
 
     void bannerRewardActionCompletedWithRewards(const std::map<std::string, std::string>& rewards) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "bannerRewardActionCompletedWithRewards";
-        cb->_paramVal[0] = sdkbox::std_map_string_string_to_jsval(cx, rewards);
+        cb->_params = rewards;
         cb->_paramLen = 1;
         cb->schedule();
     }
@@ -104,11 +103,10 @@ public:
     }
 
     void interstitialDidFailToLoadWithError(sdkbox::PluginInMobi::SBIMStatusCode code, const std::string& description) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "interstitialDidFailToLoadWithError";
-        cb->_paramVal[0] = INT_TO_JSVAL(code);
-        cb->_paramVal[1] = std_string_to_jsval(cx, description);
+        cb->_code = code;
+        cb->_description = description;
         cb->_paramLen = 2;
         cb->schedule();
     }
@@ -126,11 +124,10 @@ public:
     }
 
     void interstitialDidFailToPresentWithError(sdkbox::PluginInMobi::SBIMStatusCode code, const std::string& description) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "interstitialDidFailToPresentWithError";
-        cb->_paramVal[0] = INT_TO_JSVAL(code);
-        cb->_paramVal[1] = std_string_to_jsval(cx, description);
+        cb->_code = code;
+        cb->_description = description;
         cb->_paramLen = 2;
         cb->schedule();
     }
@@ -148,19 +145,17 @@ public:
     }
 
     void interstitialDidInteractWithParams(const std::map<std::string, std::string>& params) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "interstitialDidInteractWithParams";
-        cb->_paramVal[0] = sdkbox::std_map_string_string_to_jsval(cx, params);
+        cb->_params = params;
         cb->_paramLen = 1;
         cb->schedule();
     }
 
     void interstitialRewardActionCompletedWithRewards(const std::map<std::string, std::string>& rewards) {
-        JSContext* cx = s_cx;
         IMCallbackJS* cb = new IMCallbackJS();
         cb->_name = "interstitialRewardActionCompletedWithRewards";
-        cb->_paramVal[0] = sdkbox::std_map_string_string_to_jsval(cx, rewards);
+        cb->_params = rewards;
         cb->_paramLen = 1;
         cb->schedule();
     }
@@ -172,13 +167,13 @@ public:
     }
 
 
-    void invokeJS(const char* func, jsval* pVals, int valueSize) {
+    void invokeJS(const char* func, IMCallbackJS* cb) {
         if (!s_cx) {
             return;
         }
         JSContext* cx = s_cx;
         const char* func_name = func;
-        JS::RootedObject obj(cx, _JSDelegate);
+        JS::RootedObject obj(cx, getJSDelegate());
         JSAutoCompartment ac(cx, obj);
 
 #if defined(MOZJS_MAJOR_VERSION)
@@ -196,6 +191,10 @@ public:
         jsval retval;
         jsval func_handle;
 #endif
+
+        cb->transParams(cx);
+        jsval* pVals = cb->_paramVal;
+        int valueSize = cb->_paramLen;
 
         if (JS_HasProperty(cx, obj, func_name, &hasAction) && hasAction) {
             if(!JS_GetProperty(cx, obj, func_name, &func_handle)) {
@@ -230,7 +229,7 @@ _paramLen(0) {
 
 void IMCallbackJS::schedule() {
     retain();
-    cocos2d::CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(IMCallbackJS::notityJs), this, 0.1, false);
+    cocos2d::Director::getInstance()->getScheduler()->schedule(schedule_selector(IMCallbackJS::notityJs), this, 0.1, 0, 0.0f, false);
     autorelease();
 }
 
@@ -238,10 +237,27 @@ void IMCallbackJS::notityJs(float dt) {
     sdkbox::InMobiListener* lis = sdkbox::PluginInMobi::getListener();
     InMobiListenerJS* l = dynamic_cast<InMobiListenerJS*>(lis);
     if (l) {
-        l->invokeJS(_name.c_str(), _paramVal, _paramLen);
+        l->invokeJS(_name.c_str(), this);
     }
-    cocos2d::CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
     release();
+}
+
+void IMCallbackJS::transParams(JSContext* cx) {
+    if (0 == _name.compare("bannerDidFailToLoadWithError")
+        || 0 == _name.compare("interstitialDidFailToLoadWithError")
+        || 0 == _name.compare("interstitialDidFailToPresentWithError")) {
+        _paramVal[0] = INT_TO_JSVAL(_code);
+        _paramVal[1] = std_string_to_jsval(cx, _description);
+        _paramLen = 2;
+    } else if (0 == _name.compare("bannerDidInteractWithParams")
+               || 0 == _name.compare("bannerRewardActionCompletedWithRewards")
+               || 0 == _name.compare("interstitialDidInteractWithParams")
+               || 0 == _name.compare("interstitialRewardActionCompletedWithRewards")) {
+        _paramVal[0] = sdkbox::std_map_string_string_to_jsval(cx, _params);
+        _paramLen = 1;
+    } else {
+        _paramLen = 0;
+    }
 }
 
 
@@ -265,11 +281,10 @@ JSBool js_PluginInMobiJS_PluginInMobi_setListener(JSContext *cx, uint32_t argc, 
         {
             ok = false;
         }
-        JSObject *tmpObj = args.get(0).toObjectOrNull();
 
         JSB_PRECONDITION2(ok, cx, false, "js_PluginInMobiJS_PluginInMobi_setIAPListener : Error processing arguments");
         InMobiListenerJS* wrapper = new InMobiListenerJS();
-        wrapper->setJSDelegate(tmpObj);
+        wrapper->setJSDelegate(args.get(0));
         sdkbox::PluginInMobi::setListener(wrapper);
 
         args.rval().setUndefined();
@@ -291,7 +306,7 @@ JSBool js_PluginInMobiJS_PluginInMobi_setLocation(JSContext *cx, uint32_t argc, 
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             double arg0;
@@ -304,7 +319,7 @@ JSBool js_PluginInMobiJS_PluginInMobi_setLocation(JSContext *cx, uint32_t argc, 
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 3) {
             std::string arg0;
@@ -336,7 +351,7 @@ JSBool js_PluginInMobiJS_PluginInMobi_showInterstitial(JSContext *cx, uint32_t a
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             sdkbox::PluginInMobi::SBIMInterstitialAnimationType arg0;
@@ -346,14 +361,14 @@ JSBool js_PluginInMobiJS_PluginInMobi_showInterstitial(JSContext *cx, uint32_t a
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             sdkbox::PluginInMobi::showInterstitial();
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             int arg0;
@@ -481,7 +496,7 @@ void register_all_PluginInMobiJS_helper(JSContext* cx, JS::HandleObject global) 
     JS_DefineFunction(cx, pluginObj, "setListener", js_PluginInMobiJS_PluginInMobi_setListener, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, pluginObj, "setLocation", js_PluginInMobiJS_PluginInMobi_setLocation, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, pluginObj, "showInterstitial", js_PluginInMobiJS_PluginInMobi_showInterstitial, 1, JSPROP_READONLY | JSPROP_PERMANENT);
-    
+
     inmobi_register_constants(cx, pluginObj);
 }
 #else

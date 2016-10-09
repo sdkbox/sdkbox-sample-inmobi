@@ -34,6 +34,11 @@ bool js_PluginInMobiJS_PluginInMobi_setInterstitialKeywords(JSContext *cx, uint3
 JSBool js_PluginInMobiJS_PluginInMobi_setInterstitialKeywords(JSContext *cx, uint32_t argc, jsval *vp);
 #endif
 #if defined(MOZJS_MAJOR_VERSION)
+bool js_PluginInMobiJS_PluginInMobi_hideBanner(JSContext *cx, uint32_t argc, jsval *vp);
+#elif defined(JS_VERSION)
+JSBool js_PluginInMobiJS_PluginInMobi_hideBanner(JSContext *cx, uint32_t argc, jsval *vp);
+#endif
+#if defined(MOZJS_MAJOR_VERSION)
 bool js_PluginInMobiJS_PluginInMobi_addIdForType(JSContext *cx, uint32_t argc, jsval *vp);
 #elif defined(JS_VERSION)
 JSBool js_PluginInMobiJS_PluginInMobi_addIdForType(JSContext *cx, uint32_t argc, jsval *vp);

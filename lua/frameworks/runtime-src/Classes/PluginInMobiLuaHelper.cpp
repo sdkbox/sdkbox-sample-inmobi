@@ -1,8 +1,6 @@
 
 #include "PluginInMobiLuaHelper.h"
 #include "PluginInMobi/PluginInMobi.h"
-#include "CCLuaEngine.h"
-#include "tolua_fix.h"
 #include "SDKBoxLuaHelper.h"
 
 class InMobiListenerLua : public sdkbox::InMobiListener {

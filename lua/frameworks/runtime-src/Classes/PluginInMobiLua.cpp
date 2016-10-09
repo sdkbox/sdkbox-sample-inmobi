@@ -1,6 +1,5 @@
 #include "PluginInMobiLua.hpp"
 #include "PluginInMobi/PluginInMobi.h"
-#include "tolua_fix.h"
 #include "SDKBoxLuaHelper.h"
 #include "sdkbox/Sdkbox.h"
 
@@ -172,6 +171,40 @@ int lua_PluginInMobiLua_PluginInMobi_showInterstitial(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_PluginInMobiLua_PluginInMobi_showInterstitial'.",&tolua_err);
+#endif
+    return 0;
+}
+int lua_PluginInMobiLua_PluginInMobi_hideBanner(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"sdkbox.PluginInMobi",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_PluginInMobiLua_PluginInMobi_hideBanner'", nullptr);
+            return 0;
+        }
+        sdkbox::PluginInMobi::hideBanner();
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "sdkbox.PluginInMobi:hideBanner",argc, 0);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_PluginInMobiLua_PluginInMobi_hideBanner'.",&tolua_err);
 #endif
     return 0;
 }
@@ -1136,6 +1169,7 @@ int lua_register_PluginInMobiLua_PluginInMobi(lua_State* tolua_S)
         tolua_function(tolua_S,"setRefreshInterval", lua_PluginInMobiLua_PluginInMobi_setRefreshInterval);
         tolua_function(tolua_S,"setInterstitialKeywords", lua_PluginInMobiLua_PluginInMobi_setInterstitialKeywords);
         tolua_function(tolua_S,"showInterstitial", lua_PluginInMobiLua_PluginInMobi_showInterstitial);
+        tolua_function(tolua_S,"hideBanner", lua_PluginInMobiLua_PluginInMobi_hideBanner);
         tolua_function(tolua_S,"addIdForType", lua_PluginInMobiLua_PluginInMobi_addIdForType);
         tolua_function(tolua_S,"setLocation", lua_PluginInMobiLua_PluginInMobi_setLocation);
         tolua_function(tolua_S,"setIncome", lua_PluginInMobiLua_PluginInMobi_setIncome);

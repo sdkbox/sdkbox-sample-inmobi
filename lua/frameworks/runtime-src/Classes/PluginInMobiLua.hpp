@@ -43,4 +43,5 @@ int register_all_PluginInMobiLua(lua_State* tolua_S);
 
 
 
+
 #endif // __PluginInMobiLua_h__

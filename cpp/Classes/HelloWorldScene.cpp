@@ -4,85 +4,129 @@
 
 USING_NS_CC;
 
+#include <vector>
+#include <string>
+using namespace std;
+
+/******************
+ * Show logs
+ ******************/
+std::vector<std::string> msgbuf;
+static void showMsg(const std::string& msg) {
+    //
+    Label *label = dynamic_cast<Label*>(Director::getInstance()->getNotificationNode());
+    if (label == nullptr) {
+        auto size = Director::getInstance()->getWinSize();
+        label = Label::createWithSystemFont("test", "arial", 16);
+        label->setAnchorPoint(Vec2(0,0));
+        label->setTextColor(Color4B(0, 255, 0, 255));
+        label->setPosition(10, size.height*0.1);
+        Director::getInstance()->setNotificationNode(label);
+    }
+    
+    msgbuf.push_back(msg);
+    if (msgbuf.size() > 10) {
+        msgbuf.erase(msgbuf.cbegin());
+    }
+    
+    
+    std::string text = "";
+    for (int i = 0; i < msgbuf.size(); i++) {
+        stringstream buf;
+        buf << i << " " << msgbuf[i] << "\n";
+        text = text + buf.str();
+    }
+    
+    label->setString(text);
+}
+
+/******************
+ * InMobi Listener
+ ******************/
+
 class IMListener : public sdkbox::InMobiListener {
 public:
     void bannerDidFinishLoading() {
-        CCLOG("bannerDidFinishLoading");
+        showMsg("bannerDidFinishLoading");
     };
     void bannerDidFailToLoadWithError(sdkbox::PluginInMobi::SBIMStatusCode code, const std::string& description) {
+        showMsg("bannerDidFailToLoadWithError");
         CCLOG("bannerDidFailToLoadWithError status:%d, desc:%s", code, description.c_str());
     };
 
     void bannerDidInteractWithParams(const std::map<std::string, std::string>& params) {
-        CCLOG("bannerDidInteractWithParams");
+        showMsg("bannerDidInteractWithParams");
     };
 
     void userWillLeaveApplicationFromBanner() {
-        CCLOG("userWillLeaveApplicationFromBanner");
+        showMsg("userWillLeaveApplicationFromBanner");
     };
 
     void bannerWillPresentScreen() {
-        CCLOG("bannerWillPresentScreen");
+        showMsg("bannerWillPresentScreen");
     };
 
     void bannerDidPresentScreen() {
-        CCLOG("bannerDidPresentScreen");
+        showMsg("bannerDidPresentScreen");
     };
 
     void bannerWillDismissScreen() {
-        CCLOG("bannerWillDismissScreen");
+        showMsg("bannerWillDismissScreen");
     };
 
     void bannerDidDismissScreen() {
-        CCLOG("bannerDidDismissScreen");
+        showMsg("bannerDidDismissScreen");
     };
 
     void bannerRewardActionCompletedWithRewards(const std::map<std::string, std::string>& rewards) {
-        CCLOG("bannerRewardActionCompletedWithRewards");
+        showMsg("bannerRewardActionCompletedWithRewards");
     };
 
     void interstitialDidFinishLoading() {
-        CCLOG("interstitialDidFinishLoading");
+        showMsg("interstitialDidFinishLoading");
     };
 
     void interstitialDidFailToLoadWithError(sdkbox::PluginInMobi::SBIMStatusCode code, const std::string& description) {
+        showMsg("interstitialDidFailToLoadWithError");
         CCLOG("interstitialDidFailToLoadWithError status:%d, desc:%s", code, description.c_str());
     };
 
     void interstitialWillPresent() {
-        CCLOG("interstitialWillPresent");
+        showMsg("interstitialWillPresent");
     };
 
     void interstitialDidPresent() {
-        CCLOG("interstitialDidPresent");
+        showMsg("interstitialDidPresent");
     };
 
     void interstitialDidFailToPresentWithError(sdkbox::PluginInMobi::SBIMStatusCode code, const std::string& description) {
-        CCLOG("interstitialDidFailToPresentWithError");
+        showMsg("interstitialDidFailToPresentWithError");
     };
 
     void interstitialWillDismiss() {
-        CCLOG("interstitialWillDismiss");
+        showMsg("interstitialWillDismiss");
     };
 
     void interstitialDidDismiss() {
-        CCLOG("interstitialDidDismiss");
+        showMsg("interstitialDidDismiss");
     };
 
     void interstitialDidInteractWithParams(const std::map<std::string, std::string>& params) {
-        CCLOG("interstitialDidInteractWithParams");
+        showMsg("interstitialDidInteractWithParams");
     };
 
     void interstitialRewardActionCompletedWithRewards(const std::map<std::string, std::string>& rewards) {
-        CCLOG("interstitialRewardActionCompletedWithRewards");
+        showMsg("interstitialRewardActionCompletedWithRewards");
     };
 
     void userWillLeaveApplicationFromInterstitial() {
-        CCLOG("userWillLeaveApplicationFromInterstitial");
+        showMsg("userWillLeaveApplicationFromInterstitial");
     };
 };
 
-
+/******************
+ * InMobi sample
+ ******************/
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
@@ -108,7 +152,7 @@ bool HelloWorld::init()
         return false;
     }
 
-    CCLOG("Sample Startup");
+    showMsg("Sample Startup");
 
     // add logo
     auto winsize = Director::getInstance()->getWinSize();
@@ -140,9 +184,45 @@ void HelloWorld::createTestMenu()
     sdkbox::PluginInMobi::init();
 
     //base setting
-    auto ver = sdkbox::PluginInMobi::getVersion();
-    CCLOG("inmobi plugin version:%s", ver.c_str());
+    string ver_str = "inmobi plugin version:";
+    ver_str += sdkbox::PluginInMobi::getVersion();
+    showMsg(ver_str);
+    
     sdkbox::PluginInMobi::setLogLevel(sdkbox::PluginInMobi::SBIMSDKLogLevel::kIMSDKLogLevelDebug);
+
+    testDemograpicFunctions();
+
+    auto menu = Menu::create();
+
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Load Interstitial", "arial", 24), [](Ref*){
+        showMsg("Load Interstitial");
+        sdkbox::PluginInMobi::loadInterstitial();
+    }));
+
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Interstitial", "arial", 24), [](Ref*){
+        
+        if (sdkbox::PluginInMobi::isInterstitialReady())
+        {
+            showMsg("Plugin InMobi interstitial ad is ready");
+            sdkbox::PluginInMobi::showInterstitial();
+        }
+        else
+        {
+            showMsg("Plugin InMobi interstitial ad is not ready");
+        }
+    }));
+
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Banner", "arial", 24), [](Ref*){
+        showMsg("Show Banner");
+        sdkbox::PluginInMobi::loadBanner();
+    }));
+
+    menu->alignItemsVerticallyWithPadding(10);
+    addChild(menu);
+}
+
+void HelloWorld::testDemograpicFunctions()
+{
     sdkbox::PluginInMobi::addIdForType("test", sdkbox::PluginInMobi::SBIMSDKIdType::kIMSDKIdTypeLogin);
     sdkbox::PluginInMobi::removeIdType(sdkbox::PluginInMobi::SBIMSDKIdType::kIMSDKIdTypeLogin);
     sdkbox::PluginInMobi::setAge(18);
@@ -160,46 +240,20 @@ void HelloWorld::createTestMenu()
     sdkbox::PluginInMobi::setLocation(102, 348);
     sdkbox::PluginInMobi::setNationality("nationality");
     sdkbox::PluginInMobi::setPostalCode("618000");
-
+    
     //interstitail setting
-    sdkbox::PluginInMobi::disableHardwareAccelerationForInterstitial();
     std::map<std::string, std::string> map;
     map.insert(std::make_pair("k1", "v1"));
     sdkbox::PluginInMobi::setInterstitialExtras(map);
     sdkbox::PluginInMobi::setInterstitialKeywords("spoort");
-
+    
     //banner setting
     sdkbox::PluginInMobi::disableHardwareAccelerationForBanner();
     sdkbox::PluginInMobi::setBannerAnimationType(sdkbox::PluginInMobi::SBIMBannerAnimationType::kIMBannerAnimationTypeRotateHorizontalAxis);
     sdkbox::PluginInMobi::setBannerExtras(map);
     sdkbox::PluginInMobi::setBannerKeywords("music");
-
+    
     sdkbox::PluginInMobi::shouldAutoRefresh(true);
     sdkbox::PluginInMobi::setRefreshInterval(60);
-
-    auto menu = Menu::create();
-
-    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Load Interstitial", "sans", 24), [](Ref*){
-        CCLOG("Load Interstitial");
-        if (sdkbox::PluginInMobi::isInterstitialReady()) {
-            CCLOG("Plugin InMobi interstitial ad is ready");
-            sdkbox::PluginInMobi::showInterstitial();
-        } else {
-            CCLOG("Plugin InMobi interstitial ad is not ready");
-        }
-    }));
-
-    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Interstitial", "sans", 24), [](Ref*){
-        CCLOG("Show Interstitial");
-        sdkbox::PluginInMobi::loadInterstitial();
-    }));
-
-    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Banner", "sans", 24), [](Ref*){
-        CCLOG("Show Banner");
-        sdkbox::PluginInMobi::loadBanner();
-    }));
-
-    menu->alignItemsVerticallyWithPadding(10);
-    addChild(menu);
 }
 

@@ -17,7 +17,7 @@ public:
 
 private:
     void createTestMenu();
-
+    void testDemograpicFunctions();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

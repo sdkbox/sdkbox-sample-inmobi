@@ -10,6 +10,7 @@
 		078149D9BA5AF1BCDB5B8B8F /* sdkbox.framework */ = {isa = PBXBuildFile; fileRef = E34F4EBD9B7C7107E2453DDB /* sdkbox.framework */; };
 		0A514647B0AACDFAF8E250DC /* CoreTelephony.framework */ = {isa = PBXBuildFile; fileRef = 70F94690B3B96A646C94BE6D /* CoreTelephony.framework */; };
 		11E94508A2963B2E50541227 /* res */ = {isa = PBXBuildFile; fileRef = 847C4737BB87694BD4544EE6 /* res */; };
+		1B224AFB9F85BF36BDDB9CAA /* libz.tbd */ = {isa = PBXBuildFile; fileRef = 44BF40688F53001172B6F5D0 /* libz.tbd */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		24A64E09AD741B53C2DDAAF0 /* GameController.framework */ = {isa = PBXBuildFile; fileRef = A463489A8DC3E5087033DCB5 /* GameController.framework */; };
@@ -43,6 +44,7 @@
 		521A8E6419F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXBuildFile; fileRef = 521A8E6219F0C34300D177D7 /* Default-667h@2x.png */; };
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		52B47A471A53D09C004E4C60 /* Security.framework */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		73E741FB944A55BCFC83F1D5 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = A33A4E53BBAFB21E30A562BF /* WebKit.framework */; };
 		7C184A6C8C34DB26AE6E0E24 /* StoreKit.framework */ = {isa = PBXBuildFile; fileRef = 54A24CCA8DA9212612BEB7E0 /* StoreKit.framework */; };
 		8E30445B8F5B67A3B8743AD6 /* MediaPlayer.framework */ = {isa = PBXBuildFile; fileRef = 128A4B388E14568C8B952EB1 /* MediaPlayer.framework */; };
 		92E840EFB0573F60C32D3038 /* SafariServices.framework */ = {isa = PBXBuildFile; fileRef = 55CC401281BF2484C6EB3D34 /* SafariServices.framework */; };
@@ -60,6 +62,7 @@
 		D6B0611B1803AB670077942B /* CoreMotion.framework */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
 		DBC842E7AC89B264627DAAFB /* SystemConfiguration.framework */ = {isa = PBXBuildFile; fileRef = 57A14C76A9194ED83451A4EC /* SystemConfiguration.framework */; };
 		DF3E49C38F1A2EF4407BC478 /* EventKitUI.framework */ = {isa = PBXBuildFile; fileRef = 37124CF69028298EDBD25EA0 /* EventKitUI.framework */; };
+		E0F547208261A816A7AEE7A9 /* InMobiSDK.framework */ = {isa = PBXBuildFile; fileRef = 201F49C7986D6F85AA9E6F14 /* InMobiSDK.framework */; };
 		ED545A7C1B68A1F400C3958E /* libiconv.dylib */ = {isa = PBXBuildFile; fileRef = ED545A7B1B68A1F400C3958E /* libiconv.dylib */; };
 /* End PBXBuildFile section */
 
@@ -72,9 +75,11 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* inmobi_cpp-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inmobi_cpp-mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		201F49C7986D6F85AA9E6F14 /* InMobiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InMobiSDK.framework; path = InMobiSDK.framework; sourceTree = SOURCE_ROOT; };
 		25534BD9850D9193D224FAE4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		37124CF69028298EDBD25EA0 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/EventKitUI.framework; sourceTree = DEVELOPER_DIR; };
+		44BF40688F53001172B6F5D0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = file.tbd; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
@@ -117,6 +122,7 @@
 		70F94690B3B96A646C94BE6D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		847C4737BB87694BD4544EE6 /* res */ = {isa = PBXFileReference; lastKnownFileType = "?"; name = res; path = ../Resources/res; sourceTree = "<group>"; };
+		A33A4E53BBAFB21E30A562BF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		A463489A8DC3E5087033DCB5 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = compiled.mach-o.dylib; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -168,6 +174,9 @@
 				24A64E09AD741B53C2DDAAF0 /* GameController.framework */,
 				C34C4B36BCBA332D8732493B /* libsqlite3.0.tbd */,
 				29A049BF8DB0BE0C6BB968E4 /* libc++.tbd */,
+				E0F547208261A816A7AEE7A9 /* InMobiSDK.framework */,
+				1B224AFB9F85BF36BDDB9CAA /* libz.tbd */,
+				73E741FB944A55BCFC83F1D5 /* WebKit.framework */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,9 @@
 				A463489A8DC3E5087033DCB5 /* GameController.framework */,
 				51274B4D81A1AFB338A67CFF /* libsqlite3.0.tbd */,
 				529049B0829A7A8643222969 /* libc++.tbd */,
+				201F49C7986D6F85AA9E6F14 /* InMobiSDK.framework */,
+				44BF40688F53001172B6F5D0 /* libz.tbd */,
+				A33A4E53BBAFB21E30A562BF /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -434,6 +446,7 @@
 					" $(SRCROOT)/../../../sdkbox-cocos2d-x-binary/prebuilt/ios",
 					"\"sdkbox.framework\"",
 					"\"PluginInMobi.framework\"",
+					"\"InMobiSDK.framework\"",
 				);
 				OTHER_CFLAGS = (
 					-DSDKBOX_ENABLED,
@@ -480,6 +493,7 @@
 					" $(SRCROOT)/../../../sdkbox-cocos2d-x-binary/prebuilt/ios",
 					"\"sdkbox.framework\"",
 					"\"PluginInMobi.framework\"",
+					"\"InMobiSDK.framework\"",
 				);
 				OTHER_CFLAGS = (
 					-DSDKBOX_ENABLED,

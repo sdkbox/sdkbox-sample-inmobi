@@ -1,2 +1,2 @@
-/Volumes/extend/jenkins/sdkbox/release/extern/plugins/googleplayservices/googleplayservices/plugin/gps/bin/AndroidManifest.xml : \
-/Volumes/extend/jenkins/sdkbox/release/extern/plugins/googleplayservices/googleplayservices/plugin/gps/AndroidManifest.xml \
+/Volumes/htl-hd/work/samples/sdkbox-sample-inmobi/cpp/proj.android/libs/gps/bin/AndroidManifest.xml : \
+/Volumes/htl-hd/work/samples/sdkbox-sample-inmobi/cpp/proj.android/libs/gps/AndroidManifest.xml \

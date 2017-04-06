@@ -194,21 +194,39 @@ void HelloWorld::createTestMenu()
 
     auto menu = Menu::create();
 
-    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Load Interstitial", "arial", 24), [](Ref*){
-        showMsg("Load Interstitial");
-        sdkbox::PluginInMobi::loadInterstitial();
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Load Interstitial (ad2)", "arial", 24), [](Ref*){
+        showMsg("Load Interstitial (ad2)");
+        sdkbox::PluginInMobi::loadInterstitial("ad2");
     }));
 
-    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Interstitial", "arial", 24), [](Ref*){
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Interstitial (ad2)", "arial", 24), [](Ref*){
         
-        if (sdkbox::PluginInMobi::isInterstitialReady())
+        if (sdkbox::PluginInMobi::isInterstitialReady("ad2"))
         {
-            showMsg("Plugin InMobi interstitial ad is ready");
-            sdkbox::PluginInMobi::showInterstitial();
+            showMsg("Plugin InMobi interstitial (ad2) is ready");
+            sdkbox::PluginInMobi::showInterstitial("ad2");
         }
         else
         {
-            showMsg("Plugin InMobi interstitial ad is not ready");
+            showMsg("Plugin InMobi interstitial (ad2) is not ready");
+        }
+    }));
+    
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Load Interstitial (ad3)", "arial", 24), [](Ref*){
+        showMsg("Load Interstitial (ad3)");
+        sdkbox::PluginInMobi::loadInterstitial("ad3");
+    }));
+    
+    menu->addChild(MenuItemLabel::create(Label::createWithSystemFont("Show Interstitial (ad3)", "arial", 24), [](Ref*){
+        
+        if (sdkbox::PluginInMobi::isInterstitialReady("ad3"))
+        {
+            showMsg("Plugin InMobi interstitial (ad3) is ready");
+            sdkbox::PluginInMobi::showInterstitial("ad3");
+        }
+        else
+        {
+            showMsg("Plugin InMobi interstitial (ad3) is not ready");
         }
     }));
 

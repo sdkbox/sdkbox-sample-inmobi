@@ -1,38 +1,46 @@
 {
     "android": {
         "InMobi": {
-            "version": 1, 
-            "account_id": "922cc696d9fa475097651b5cad78567d", 
+            "version": 1,
+            "account_id": "922cc696d9fa475097651b5cad78567d",
             "ads": {
                 "ad2": {
-                    "type": "interstitial", 
+                    "type": "interstitial",
                     "id": "1449919424310"
-                }, 
+                },
                 "ad1": {
-                    "width": 300, 
-                    "type": "banner", 
-                    "id": "1447081423897", 
-                    "alignment": "top", 
+                    "width": 300,
+                    "type": "banner",
+                    "id": "1447081423897",
+                    "alignment": "top",
                     "height": 50
+                },
+                "ad3": {
+                    "type": "interstitial",
+                    "id": "1490056437717"
                 }
             }
         }
-    }, 
+    },
     "ios": {
         "InMobi": {
-            "version": 1, 
-            "account_id": "922cc696d9fa475097651b5cad78567d", 
+            "version": 1,
+            "account_id": "922cc696d9fa475097651b5cad78567d",
             "ads": {
                 "ad2": {
-                    "type": "interstitial", 
+                    "type": "interstitial",
                     "id": "1446442489192"
-                }, 
+                },
                 "ad1": {
-                    "width": 300, 
-                    "type": "banner", 
-                    "id": "1449005666241", 
-                    "alignment": "bottom", 
+                    "width": 300,
+                    "type": "banner",
+                    "id": "1449005666241",
+                    "alignment": "bottom",
                     "height": 50
+                },
+                "ad3": {
+                    "type": "interstitial",
+                    "id": "1492093596889"
                 }
             }
         }

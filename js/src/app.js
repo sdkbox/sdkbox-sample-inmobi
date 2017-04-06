@@ -1,7 +1,6 @@
-
 var HelloWorldLayer = cc.Layer.extend({
-    sprite:null,
-    ctor:function () {
+    sprite: null,
+    ctor: function() {
         //////////////////////////////
         // 1. super init first
         this._super();
@@ -30,7 +29,7 @@ var HelloWorldLayer = cc.Layer.extend({
         return true;
     },
 
-    createTestMenu:function() {
+    createTestMenu: function() {
         sdkbox.PluginInMobi.setListener({
             bannerDidFinishLoading: function() {
                 cc.log('bannerDidFinishLoading');
@@ -128,28 +127,42 @@ var HelloWorldLayer = cc.Layer.extend({
         sdkbox.PluginInMobi.setRefreshInterval(60);
 
 
-        var item1 = new cc.MenuItemLabel(new cc.LabelTTF("Load Interstitial", "sans", 28), function() {
-            cc.log("Load Interstitial");
-            if (sdkbox.PluginInMobi.isInterstitialReady()) {
-                cc.log("Plugin InMobi interstitial ad is ready");
-                sdkbox.PluginInMobi.showInterstitial();
+        var item1 = new cc.MenuItemLabel(new cc.LabelTTF("Load Interstitial (ad2)", "sans", 28), function() {
+            cc.log("Load Interstitial (ad2)");
+            sdkbox.PluginInMobi.loadInterstitial("ad2");
+        });
+
+        var item2 = new cc.MenuItemLabel(new cc.LabelTTF("Show Interstitial (ad2)", "sans", 28), function() {
+            if (sdkbox.PluginInMobi.isInterstitialReady("ad2")) {
+                cc.log("Show Plugin InMobi interstitial (ad2)");
+                sdkbox.PluginInMobi.showInterstitial("ad2");
             } else {
-                cc.log("Plugin InMobi interstitial ad is not ready");
+                cc.log("Plugin InMobi interstitial (ad2) is not ready");
+            }
+
+        });
+
+        var item3 = new cc.MenuItemLabel(new cc.LabelTTF("Load Interstitial (ad3)", "sans", 28), function() {
+            cc.log("Load Interstitial (ad3)");
+            sdkbox.PluginInMobi.loadInterstitial("ad3");
+        });
+
+        var item4 = new cc.MenuItemLabel(new cc.LabelTTF("Show Interstitial (ad3)", "sans", 28), function() {
+            if (sdkbox.PluginInMobi.isInterstitialReady("ad3")) {
+                cc.log("Show Plugin InMobi interstitial (ad3)");
+                sdkbox.PluginInMobi.showInterstitial("ad3");
+            } else {
+                cc.log("Plugin InMobi interstitial (ad3) is not ready");
             }
         });
 
-        var item2 = new cc.MenuItemLabel(new cc.LabelTTF("Show Interstitial", "sans", 28), function() {
-            cc.log("Show Interstitial");
-            sdkbox.PluginInMobi.loadInterstitial();
-        });
-
-        var item3 = new cc.MenuItemLabel(new cc.LabelTTF("Show Banner", "sans", 28), function() {
+        var item5 = new cc.MenuItemLabel(new cc.LabelTTF("Show Banner", "sans", 28), function() {
             cc.log("Show Banner");
             sdkbox.PluginInMobi.loadBanner();
         });
 
         var winsize = cc.winSize;
-        var menu = new cc.Menu(item1, item2, item3);
+        var menu = new cc.Menu(item1, item2, item3, item4, item5);
         menu.x = winsize.width / 2;
         menu.y = winsize.height / 2;
         menu.alignItemsVerticallyWithPadding(20);
@@ -158,10 +171,9 @@ var HelloWorldLayer = cc.Layer.extend({
 });
 
 var HelloWorldScene = cc.Scene.extend({
-    onEnter:function () {
+    onEnter: function() {
         this._super();
         var layer = new HelloWorldLayer();
         this.addChild(layer);
     }
 });
-

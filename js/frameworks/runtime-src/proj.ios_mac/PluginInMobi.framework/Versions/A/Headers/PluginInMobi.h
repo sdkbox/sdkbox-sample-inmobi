@@ -136,62 +136,62 @@ namespace sdkbox {
          */
         static void removeIdType(SBIMSDKIdType type);
         /**
-         * Provide the user's age to the SDK for targetting purposes.
+         * Provide the user's age to the SDK for targeting purposes.
          * @param age The user's age.
          */
         static void setAge(int age);
         /**
-         * Provide the user's area code to the SDK for targetting purposes.
+         * Provide the user's area code to the SDK for targeting purposes.
          * @param areaCode The user's area code.
          */
         static void setAreaCode(const std::string& areaCode);
         /**
-         * Provide the user's age group to the SDK for targetting purposes.
+         * Provide the user's age group to the SDK for targeting purposes.
          * @param ageGroup The user's age group.
          */
         static void setAgeGroup(SBIMSDKAgeGroup ageGroup);
         /**
-         * Provide a user's date of birth to the SDK for targetting purposes.
+         * Provide a user's date of birth to the SDK for targeting purposes.
          * @param dateOfBirth The user's date of birth.
          */
         static void setYearOfBirth(int yearOfBirth);
         /**
-         * Provide the user's education status to the SDK for targetting purposes.
+         * Provide the user's education status to the SDK for targeting purposes.
          * @param education The user's education status.
          */
         static void setEducation(SBIMSDKEducation education);
         /**
-         * Provide the user's ethnicity to the SDK for targetting purposes.
+         * Provide the user's ethnicity to the SDK for targeting purposes.
          * @param ethnicity The user's ethnicity.
          */
         static void setEthnicity(SBIMSDKEthnicity ethnicity);
         /**
-         * Provide the user's gender to the SDK for targetting purposes.
+         * Provide the user's gender to the SDK for targeting purposes.
          * @param gender The user's gender.
          */
         static void setGender(SBIMSDKGender gender);
         /**
-         * Provide the user's household income to the SDK for targetting purposes.
+         * Provide the user's household income to the SDK for targeting purposes.
          * @param income The user's household income.
          */
         static void setHouseholdIncome(SBIMSDKHouseholdIncome income);
         /**
-         * Provide the user's income to the SDK for targetting purposes.
+         * Provide the user's income to the SDK for targeting purposes.
          * @param income The user's income.
          */
         static void setIncome(unsigned int income);
         /**
-         * Provide the user's interests to the SDK for targetting purposes.
+         * Provide the user's interests to the SDK for targeting purposes.
          * @param interests The user's interests.
          */
         static void setInterests(const std::string& interests);
         /**
-         * Provide the user's preferred language to the SDK for targetting purposes.
+         * Provide the user's preferred language to the SDK for targeting purposes.
          * @param language The user's language.
          */
         static void setLanguage(const std::string& language);
         /**
-         * Provide the user's location to the SDK for targetting purposes.
+         * Provide the user's location to the SDK for targeting purposes.
          * @param city The user's city.
          * @param state The user's state.
          * @param country The user's country.
@@ -199,17 +199,17 @@ namespace sdkbox {
         static void setLocation(const std::string& city, const std::string& state, const std::string& country);
 
         /**
-         * Provide the user's location to the SDK for targetting purposes.
+         * Provide the user's location to the SDK for targeting purposes.
          * @param location: The location of the user
          */
         static void setLocation(double latitude, double longitude);
         /**
-         * Provide the user's nationality to the SDK for targetting purposes.
+         * Provide the user's nationality to the SDK for targeting purposes.
          * @param nationality The user's nationality.
          */
         static void setNationality(const std::string& nationality);
         /**
-         * Provide the user's postal code to the SDK for targetting purposes.
+         * Provide the user's postal code to the SDK for targeting purposes.
          * @param postalcode The user's postalcode.
          */
         static void setPostalCode(const std::string& postalcode);
@@ -254,39 +254,39 @@ namespace sdkbox {
         /**
          * Submit a request to load interstitial ad content.
          */
-        static void loadInterstitial();
+        static void loadInterstitial(std::string ad = "");
         /**
          * Returns true if the interstitial was loaded successfully and in ready to be shown.
          */
-        static bool isInterstitialReady();
+        static bool isInterstitialReady(std::string ad = "");
         /**
          * Displays the interstitial on the screen
          */
-        static void showInterstitial();
+        static void showInterstitial(std::string ad = "");
         /**
          * Displays the interstitial on the screen
          * valid on ios
          */
-        static void showInterstitial(SBIMInterstitialAnimationType type);
+        static void showInterstitial(SBIMInterstitialAnimationType type, std::string ad = "");
 
         /**
          * Displays the interstitial on the screen
          * valid on android
          */
-        static void showInterstitial(int enterAnimationResourcedId, int exitAnimationResourceId);
+        static void showInterstitial(int enterAnimationResourcedId, int exitAnimationResourceId, std::string ad="");
         /**
          * Disable hardware acceleration on the underlying views.
          * valid on android
          */
-        static void disableHardwareAccelerationForInterstitial();
+        static void disableHardwareAccelerationForInterstitial(std::string ad = "");
         /**
          * Set any additional custom parameters that will be sent in the ad request.
          */
-        static void setInterstitialExtras(const std::map<std::string, std::string>& extras);
+        static void setInterstitialExtras(const std::map<std::string, std::string>& extras, std::string ad = "");
         /**
          * Set comma delimited keywords for targeting purpose
          */
-        static void setInterstitialKeywords(const std::string& keywords);
+        static void setInterstitialKeywords(const std::string& keywords, std::string ad = "");
 
         };
 

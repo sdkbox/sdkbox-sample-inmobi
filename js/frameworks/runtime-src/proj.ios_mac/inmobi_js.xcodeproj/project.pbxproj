@@ -13,6 +13,7 @@
 		1AE159EC18C9DF3600FCA372 /* project.json */ = {isa = PBXBuildFile; fileRef = 1A1A081B18C9DF05005C6854 /* project.json */; };
 		28614A5582EFCDE41E6DCD96 /* libjscocos2d iOS.a */ = {isa = PBXBuildFile; fileRef = 25314D7F96A5964397743D54 /* libjscocos2d iOS.a */; };
 		498B452C9E98B6E14A9B86D2 /* script */ = {isa = PBXBuildFile; fileRef = 671A491884E0C7533ED0085C /* script */; };
+		4C5D4A7C923E3302E0B73821 /* libz.tbd */ = {isa = PBXBuildFile; fileRef = 76D846BCA8E8D04919AB1CCA /* libz.tbd */; };
 		4CD64FA9BAA5D43CC49330AF /* SafariServices.framework */ = {isa = PBXBuildFile; fileRef = 12944EB2B5104E9DA2693F45 /* SafariServices.framework */; };
 		5091731A17ECDF7A00D62437 /* Icon-29.png */ = {isa = PBXBuildFile; fileRef = 5091731417ECDF7A00D62437 /* Icon-29.png */; };
 		5091731B17ECDF7A00D62437 /* Icon-40.png */ = {isa = PBXBuildFile; fileRef = 5091731517ECDF7A00D62437 /* Icon-40.png */; };
@@ -38,6 +39,7 @@
 		724D45448D9B3E69AD7BBC8C /* EventKit.framework */ = {isa = PBXBuildFile; fileRef = 5154492DBF53B23A8BFE11EE /* EventKit.framework */; };
 		77E841C9852696ED4B7E66D2 /* PluginInMobi.framework */ = {isa = PBXBuildFile; fileRef = A3D546D9B728CCB622C93170 /* PluginInMobi.framework */; };
 		84444357BFB30AFFBADF7463 /* PluginInMobiJS.cpp */ = {isa = PBXBuildFile; fileRef = 137745EEAD74A114998BBF37 /* PluginInMobiJS.cpp */; };
+		8A754F9FA626656095313493 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = 099C44FB9801CA406D2B0146 /* WebKit.framework */; };
 		8DC14AF9ACA8953C60EA7920 /* EventKitUI.framework */ = {isa = PBXBuildFile; fileRef = E5904857BA4AE301F9A115DA /* EventKitUI.framework */; };
 		8E324E81AE13918716787A4C /* AdSupport.framework */ = {isa = PBXBuildFile; fileRef = D1AE4685801F270BE0062956 /* AdSupport.framework */; };
 		93EC47EC8EAC45886F051A0E /* sdkbox.framework */ = {isa = PBXBuildFile; fileRef = 47A24C0D97655523556323C3 /* sdkbox.framework */; };
@@ -64,6 +66,7 @@
 		D454520C156E22BD00887EB5 /* libz.dylib */ = {isa = PBXBuildFile; fileRef = D454520B156E22BD00887EB5 /* libz.dylib */; };
 		D4545227156E28EF00887EB5 /* AppDelegate.cpp */ = {isa = PBXBuildFile; fileRef = D4545215156E28EF00887EB5 /* AppDelegate.cpp */; };
 		D6B061241803AB9F0077942B /* CoreMotion.framework */ = {isa = PBXBuildFile; fileRef = D6B061231803AB9F0077942B /* CoreMotion.framework */; };
+		D71B48BC8A21AEFE0ABBD853 /* InMobiSDK.framework */ = {isa = PBXBuildFile; fileRef = 79354494BD9BCFEAD373F329 /* InMobiSDK.framework */; };
 		DF0A494A955969CA6A3EF3E8 /* SDKBoxJSHelper.cpp */ = {isa = PBXBuildFile; fileRef = BD0847A88216F844861657B9 /* SDKBoxJSHelper.cpp */; };
 		E45E4D6AB056B527C4A1B898 /* GameController.framework */ = {isa = PBXBuildFile; fileRef = A4FC449383BAAF95115256BA /* GameController.framework */; };
 		E8134ABDA689ABECC97F20D0 /* PluginInMobiJSHelper.cpp */ = {isa = PBXBuildFile; fileRef = 520C4E9D9291B5DF5109426E /* PluginInMobiJSHelper.cpp */; };
@@ -73,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		099C44FB9801CA406D2B0146 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		12944EB2B5104E9DA2693F45 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
 		137745EEAD74A114998BBF37 /* PluginInMobiJS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PluginInMobiJS.cpp; path = ../Classes/PluginInMobiJS.cpp; sourceTree = SOURCE_ROOT; };
 		1420440190351092E6E385C1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
@@ -118,6 +122,8 @@
 		526041819F61614826BB19BD /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "$(SRCROOT)/../../../../../sdkbox-cocos2d-x-binary/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<absolute>"; };
 		671A491884E0C7533ED0085C /* script */ = {isa = PBXFileReference; lastKnownFileType = "?"; name = script; path = ../../../script; sourceTree = "<group>"; };
 		707B4B80B45477BB1234076A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		76D846BCA8E8D04919AB1CCA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = file.tbd; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		79354494BD9BCFEAD373F329 /* InMobiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InMobiSDK.framework; path = InMobiSDK.framework; sourceTree = SOURCE_ROOT; };
 		87D4C4441AB2187000F68C44 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8B4244AC8F961FF19B94522C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = file.tbd; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		9F20C9E11A5BBE85006FB50B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -196,6 +202,9 @@
 				E45E4D6AB056B527C4A1B898 /* GameController.framework */,
 				5C964AB2B03D284A1480A5D2 /* libsqlite3.0.tbd */,
 				A8DA4BE5A6896F12A467271A /* libc++.tbd */,
+				D71B48BC8A21AEFE0ABBD853 /* InMobiSDK.framework */,
+				4C5D4A7C923E3302E0B73821 /* libz.tbd */,
+				8A754F9FA626656095313493 /* WebKit.framework */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +315,9 @@
 				A4FC449383BAAF95115256BA /* GameController.framework */,
 				189248B1B560A46540174DB4 /* libsqlite3.0.tbd */,
 				8B4244AC8F961FF19B94522C /* libc++.tbd */,
+				79354494BD9BCFEAD373F329 /* InMobiSDK.framework */,
+				76D846BCA8E8D04919AB1CCA /* libz.tbd */,
+				099C44FB9801CA406D2B0146 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -561,6 +573,7 @@
 					" $(SRCROOT)/../../../../../sdkbox-cocos2d-x-binary/prebuilt/ios",
 					"\"sdkbox.framework\"",
 					"\"PluginInMobi.framework\"",
+					"\"InMobiSDK.framework\"",
 				);
 				OTHER_CFLAGS = (
 					-DSDKBOX_ENABLED,
@@ -605,6 +618,7 @@
 					" $(SRCROOT)/../../../../../sdkbox-cocos2d-x-binary/prebuilt/ios",
 					"\"sdkbox.framework\"",
 					"\"PluginInMobi.framework\"",
+					"\"InMobiSDK.framework\"",
 				);
 				OTHER_CFLAGS = (
 					-DSDKBOX_ENABLED,

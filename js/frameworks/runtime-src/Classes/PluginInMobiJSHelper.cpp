@@ -353,9 +353,16 @@ JSBool js_PluginInMobiJS_PluginInMobi_showInterstitial(JSContext *cx, uint32_t a
     bool ok = true;
 
     do {
+        if (argc == 0) {
+            sdkbox::PluginInMobi::showInterstitial("");
+            return true;
+        }
+    } while (0);
+
+    do {
         if (argc == 1) {
-            sdkbox::PluginInMobi::SBIMInterstitialAnimationType arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
+            std::string arg0;
+            ok &= jsval_to_std_string(cx, args.get(0), &arg0);
             if (!ok) { ok = true; break; }
             sdkbox::PluginInMobi::showInterstitial(arg0);
             return true;
@@ -363,8 +370,24 @@ JSBool js_PluginInMobiJS_PluginInMobi_showInterstitial(JSContext *cx, uint32_t a
     } while (0);
 
     do {
-        if (argc == 0) {
-            sdkbox::PluginInMobi::showInterstitial();
+        if (argc == 1) {
+            sdkbox::PluginInMobi::SBIMInterstitialAnimationType arg0;
+            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            sdkbox::PluginInMobi::showInterstitial(arg0, "");
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 2) {
+            sdkbox::PluginInMobi::SBIMInterstitialAnimationType arg0;
+            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            std::string arg1;
+            ok &= jsval_to_std_string(cx, args.get(0), &arg1);
+            if (!ok) { ok = true; break; }
+            sdkbox::PluginInMobi::showInterstitial(arg0, arg1);
             return true;
         }
     } while (0);
@@ -377,10 +400,27 @@ JSBool js_PluginInMobiJS_PluginInMobi_showInterstitial(JSContext *cx, uint32_t a
             int arg1;
             ok &= jsval_to_int32(cx, args.get(1), (int32_t *)&arg1);
             if (!ok) { ok = true; break; }
-            sdkbox::PluginInMobi::showInterstitial(arg0, arg1);
+            sdkbox::PluginInMobi::showInterstitial(arg0, arg1, "");
             return true;
         }
     } while (0);
+
+    do {
+        if (argc == 3) {
+            int arg0;
+            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            int arg1;
+            ok &= jsval_to_int32(cx, args.get(1), (int32_t *)&arg1);
+            if (!ok) { ok = true; break; }
+            std::string arg2;
+            ok &= jsval_to_std_string(cx, args.get(0), &arg2);
+            if (!ok) { ok = true; break; }
+            sdkbox::PluginInMobi::showInterstitial(arg0, arg1, arg2);
+            return true;
+        }
+    } while (0);
+
     JS_ReportError(cx, "js_PluginInMobiJS_PluginInMobi_showInterstitial : wrong number of arguments");
     return false;
 }

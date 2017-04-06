@@ -41,8 +41,11 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
+		52E742938FC811E5E979CA8A /* libz.tbd */ = {isa = PBXBuildFile; fileRef = B04F47A28A0FEE515F9C9322 /* libz.tbd */; };
 		5CF44AA38A00C9F59E39D879 /* libcocos2d iOS.a */ = {isa = PBXBuildFile; fileRef = 55AA4481BDB4DD681262F849 /* libcocos2d iOS.a */; };
+		6D2F498DAC90DBBB4F260569 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = D9EE41388391C06043ACFC0D /* WebKit.framework */; };
 		71E74DC9B9EFD4232655F563 /* EventKit.framework */ = {isa = PBXBuildFile; fileRef = EF164C47AB8738846020E0D2 /* EventKit.framework */; };
+		8C7C417CAB1FB083EE5170AD /* InMobiSDK.framework */ = {isa = PBXBuildFile; fileRef = C5F64B5BA4D7B60774358088 /* InMobiSDK.framework */; };
 		8F914DEA9B1432752E1121B9 /* PluginInMobi.framework */ = {isa = PBXBuildFile; fileRef = DD194AF6919AD9733047E4DD /* PluginInMobi.framework */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
 		9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp */ = {isa = PBXBuildFile; fileRef = 9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */; };
@@ -134,12 +137,15 @@
 		9FFE009E1ACCF59E00D6E35A /* RuntimeLuaImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeLuaImpl.h; sourceTree = "<group>"; };
 		A4F34C84AB72E44CB6F17E61 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/EventKitUI.framework; sourceTree = DEVELOPER_DIR; };
 		AEB14CB3885909A02FEB6C3B /* PluginInMobiLuaHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PluginInMobiLuaHelper.cpp; path = ../Classes/PluginInMobiLuaHelper.cpp; sourceTree = SOURCE_ROOT; };
+		B04F47A28A0FEE515F9C9322 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = file.tbd; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		C03781B718BF655400FE4F13 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
 		C03781B818BF655400FE4F13 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
 		C05D1C111923449100B808A4 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../../../config.json; sourceTree = "<group>"; };
 		C39F4EA6B9087FA84FAC007D /* libsimulator iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsimulator iOS.a"; path = "$(SRCROOT)/../../../../../sdkbox-cocos2d-x-binary/prebuilt/ios/libsimulator iOS.a"; sourceTree = "<absolute>"; };
 		C53749A0BEF5B6A6C5A25E82 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
+		C5F64B5BA4D7B60774358088 /* InMobiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InMobiSDK.framework; path = InMobiSDK.framework; sourceTree = SOURCE_ROOT; };
 		D6B061341803AC000077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		D9EE41388391C06043ACFC0D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		DA9E7D871AB1ABCC004B27C8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DD194AF6919AD9733047E4DD /* PluginInMobi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginInMobi.framework; path = PluginInMobi.framework; sourceTree = SOURCE_ROOT; };
 		E28142749AD8E005BE33A324 /* PluginInMobiLua.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginInMobiLua.hpp; path = ../Classes/PluginInMobiLua.hpp; sourceTree = SOURCE_ROOT; };
@@ -199,6 +205,9 @@
 				49F14145A30807DE9506891A /* GameController.framework */,
 				C1674B24A67A602C32F5FB4A /* libsqlite3.0.tbd */,
 				CEE94CD4913C834547D5775E /* libc++.tbd */,
+				8C7C417CAB1FB083EE5170AD /* InMobiSDK.framework */,
+				52E742938FC811E5E979CA8A /* libz.tbd */,
+				6D2F498DAC90DBBB4F260569 /* WebKit.framework */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +341,9 @@
 				6E5547ECBE8A159FBB1E40B9 /* GameController.framework */,
 				5AD44E88A3F3334CA3B49B61 /* libsqlite3.0.tbd */,
 				8C6746058B24F47DA5B90DD4 /* libc++.tbd */,
+				C5F64B5BA4D7B60774358088 /* InMobiSDK.framework */,
+				B04F47A28A0FEE515F9C9322 /* libz.tbd */,
+				D9EE41388391C06043ACFC0D /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -393,7 +405,7 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 			};
-			buildConfigurationList = F293B3C215EB7BE500256477 /* Build configuration list for PBXProject "Unity-iPhone" */;
+			buildConfigurationList = F293B3C215EB7BE500256477 /* Build configuration list for PBXNativeTarget "TARGET_NAME" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -560,6 +572,7 @@
 					"$(SRCROOT)/../../../../../sdkbox-cocos2d-x-binary/prebuilt/ios",
 					"\"sdkbox.framework\"",
 					"\"PluginInMobi.framework\"",
+					"\"InMobiSDK.framework\"",
 				);
 				OTHER_CFLAGS = (
 					-DSDKBOX_ENABLED,
@@ -612,6 +625,7 @@
 					"$(SRCROOT)/../../../../../sdkbox-cocos2d-x-binary/prebuilt/ios",
 					"\"sdkbox.framework\"",
 					"\"PluginInMobi.framework\"",
+					"\"InMobiSDK.framework\"",
 				);
 				OTHER_CFLAGS = (
 					-DSDKBOX_ENABLED,
@@ -640,7 +654,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F293B3C215EB7BE500256477 /* Build configuration list for PBXProject "Unity-iPhone" */ = {
+		F293B3C215EB7BE500256477 /* Build configuration list for PBXNativeTarget "TARGET_NAME" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F293B6C215EB7BEA00256477 /* Debug */,

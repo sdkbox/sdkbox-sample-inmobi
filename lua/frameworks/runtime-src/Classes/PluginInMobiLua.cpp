@@ -105,6 +105,21 @@ int lua_PluginInMobiLua_PluginInMobi_setInterstitialKeywords(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
+    if (argc == 2)
+    {
+        std::string arg0;
+        std::string arg1;
+        ok &= luaval_to_std_string(tolua_S, 2,&arg0, "sdkbox.PluginInMobi:setInterstitialKeywords");
+        ok &= luaval_to_std_string(tolua_S, 3,&arg1, "sdkbox.PluginInMobi:setInterstitialKeywords");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_PluginInMobiLua_PluginInMobi_setInterstitialKeywords'", nullptr);
+            return 0;
+        }
+        sdkbox::PluginInMobi::setInterstitialKeywords(arg0, arg1);
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "sdkbox.PluginInMobi:setInterstitialKeywords",argc, 1);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -142,9 +157,38 @@ int lua_PluginInMobiLua_PluginInMobi_showInterstitial(lua_State* tolua_S)
     ok  = true;
     do 
     {
+        if (argc == 2)
+        {
+            sdkbox::PluginInMobi::SBIMInterstitialAnimationType arg0;
+            ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "sdkbox.PluginInMobi:showInterstitial");
+            if (!ok) { break; }
+            std::string arg1;
+            ok &= luaval_to_std_string(tolua_S, 3,&arg1, "sdkbox.PluginInMobi:showInterstitial");
+            if (!ok) { break; }
+            sdkbox::PluginInMobi::showInterstitial(arg0, arg1);
+            lua_settop(tolua_S, 1);
+            return 1;
+        }
+    } while (0);
+    ok  = true;
+    do 
+    {
         if (argc == 0)
         {
             sdkbox::PluginInMobi::showInterstitial();
+            lua_settop(tolua_S, 1);
+            return 1;
+        }
+    } while (0);
+    ok  = true;
+    do 
+    {
+        if (argc == 1)
+        {
+            std::string arg0;
+            ok &= luaval_to_std_string(tolua_S, 2,&arg0, "sdkbox.PluginInMobi:showInterstitial");
+            if (!ok) { break; }
+            sdkbox::PluginInMobi::showInterstitial(arg0);
             lua_settop(tolua_S, 1);
             return 1;
         }
@@ -161,6 +205,25 @@ int lua_PluginInMobiLua_PluginInMobi_showInterstitial(lua_State* tolua_S)
             ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1, "sdkbox.PluginInMobi:showInterstitial");
             if (!ok) { break; }
             sdkbox::PluginInMobi::showInterstitial(arg0, arg1);
+            lua_settop(tolua_S, 1);
+            return 1;
+        }
+    } while (0);
+    ok  = true;
+    do 
+    {
+        if (argc == 3)
+        {
+            int arg0;
+            ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "sdkbox.PluginInMobi:showInterstitial");
+            if (!ok) { break; }
+            int arg1;
+            ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1, "sdkbox.PluginInMobi:showInterstitial");
+            if (!ok) { break; }
+            std::string arg2;
+            ok &= luaval_to_std_string(tolua_S, 4,&arg2, "sdkbox.PluginInMobi:showInterstitial");
+            if (!ok) { break; }
+            sdkbox::PluginInMobi::showInterstitial(arg0, arg1, arg2);
             lua_settop(tolua_S, 1);
             return 1;
         }
@@ -579,6 +642,19 @@ int lua_PluginInMobiLua_PluginInMobi_loadInterstitial(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
+    if (argc == 1)
+    {
+        std::string arg0;
+        ok &= luaval_to_std_string(tolua_S, 2,&arg0, "sdkbox.PluginInMobi:loadInterstitial");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_PluginInMobiLua_PluginInMobi_loadInterstitial'", nullptr);
+            return 0;
+        }
+        sdkbox::PluginInMobi::loadInterstitial(arg0);
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "sdkbox.PluginInMobi:loadInterstitial",argc, 0);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -610,6 +686,19 @@ int lua_PluginInMobiLua_PluginInMobi_disableHardwareAccelerationForInterstitial(
             return 0;
         }
         sdkbox::PluginInMobi::disableHardwareAccelerationForInterstitial();
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    if (argc == 1)
+    {
+        std::string arg0;
+        ok &= luaval_to_std_string(tolua_S, 2,&arg0, "sdkbox.PluginInMobi:disableHardwareAccelerationForInterstitial");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_PluginInMobiLua_PluginInMobi_disableHardwareAccelerationForInterstitial'", nullptr);
+            return 0;
+        }
+        sdkbox::PluginInMobi::disableHardwareAccelerationForInterstitial(arg0);
         lua_settop(tolua_S, 1);
         return 1;
     }
@@ -1002,6 +1091,19 @@ int lua_PluginInMobiLua_PluginInMobi_isInterstitialReady(lua_State* tolua_S)
             return 0;
         }
         bool ret = sdkbox::PluginInMobi::isInterstitialReady();
+        tolua_pushboolean(tolua_S,(bool)ret);
+        return 1;
+    }
+    if (argc == 1)
+    {
+        std::string arg0;
+        ok &= luaval_to_std_string(tolua_S, 2,&arg0, "sdkbox.PluginInMobi:isInterstitialReady");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_PluginInMobiLua_PluginInMobi_isInterstitialReady'", nullptr);
+            return 0;
+        }
+        bool ret = sdkbox::PluginInMobi::isInterstitialReady(arg0);
         tolua_pushboolean(tolua_S,(bool)ret);
         return 1;
     }

@@ -58,33 +58,50 @@ function MainScene:setupTestMenu()
     sdkbox.PluginInMobi:shouldAutoRefresh(true)
     sdkbox.PluginInMobi:setRefreshInterval(60)
 
-    local label1 = cc.Label:createWithSystemFont("Load Interstitial", "sans", 28)
-    local item1 = cc.MenuItemLabel:create(label1)
+    local item1 = cc.MenuItemLabel:create(
+        cc.Label:createWithSystemFont("Load Interstitial (ad2)", "sans", 28))
     item1:onClicked(function()
-        print("Load Interstitial")
-        if sdkbox.PluginInMobi:isInterstitialReady() then
-            print("Plugin InMobi interstitial ad is ready")
-            sdkbox.PluginInMobi:showInterstitial()
+        if sdkbox.PluginInMobi:isInterstitialReady("ad3") then
+            print("Load Plugin InMobi interstitial (ad2)")
         else
-            print("Plugin InMobi interstitial ad is not ready")
+            sdkbox.PluginInMobi:loadInterstitial("ad2")
+            print("Plugin InMobi interstitial (ad2) is not ready")
         end
     end)
 
-    local label2 = cc.Label:createWithSystemFont("Show Interstitial", "sans", 28)
-    local item2 = cc.MenuItemLabel:create(label2)
+    local item2 = cc.MenuItemLabel:create(
+        cc.Label:createWithSystemFont("Show Interstitial (ad2)", "sans", 28))
     item2:onClicked(function()
-        print("Show Interstitial")
-        sdkbox.PluginInMobi:loadInterstitial()
+        print("Show Interstitial (ad2)")
+        sdkbox.PluginInMobi:showInterstitial("ad2")
     end)
 
-    local label3 = cc.Label:createWithSystemFont("Show Banner", "sans", 28)
-    local item3 = cc.MenuItemLabel:create(label3)
+
+    local item3 = cc.MenuItemLabel:create(
+        cc.Label:createWithSystemFont("Load Interstitial (ad3)", "sans", 28))
     item3:onClicked(function()
+        if sdkbox.PluginInMobi:isInterstitialReady("ad3") then
+            print("Load Plugin InMobi interstitial (ad3)")
+        else
+            sdkbox.PluginInMobi:loadInterstitial("ad3")
+            print("Plugin InMobi interstitial (ad3) is not ready")
+        end
+    end)
+
+    local item4 = cc.MenuItemLabel:create(
+        cc.Label:createWithSystemFont("Show Interstitial (ad3)", "sans", 28))
+    item4:onClicked(function()
+        print("Show Interstitial (ad3)")
+        sdkbox.PluginInMobi:showInterstitial("ad3")
+    end)
+
+    local item5 = cc.MenuItemLabel:create(cc.Label:createWithSystemFont("Show Banner", "sans", 28))
+    item5:onClicked(function()
         print("Show Banner")
         sdkbox.PluginInMobi:loadBanner()
     end)
 
-    local menu = cc.Menu:create(item1, item2, item3)
+    local menu = cc.Menu:create(item1, item2, item3, item4, item5)
     menu:alignItemsVerticallyWithPadding(24)
     self:addChild(menu)
 end
